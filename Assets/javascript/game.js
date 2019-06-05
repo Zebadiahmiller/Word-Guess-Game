@@ -7,8 +7,9 @@ console.log(selectedWord)
 const selectedWordArray = selectedWord.split('');
 let blanks = 0;
 let wrongLetter = [];
-const wrongGuess = [];
-let wins = 0
+let wrongGuess = [];
+let wins = 0;
+let losses = 0;
 let guessesLeft = 9;
 
 // array full of underscores
@@ -27,8 +28,13 @@ document.addEventListener('keyup', function (event) {
         else {
             
             guessesLeft--;
+        };
+        if (selectedWordArray[i] !== key){
+            wrongGuess = key;
+           document.getElementById('lettersguessed').innerHTML = wrongGuess;
+
         }
-    }
+    };
 
     //win conditions
   if (underscoreArray.toString() == selectedWordArray.toString()){
@@ -36,6 +42,12 @@ document.addEventListener('keyup', function (event) {
       document.getElementById('wins').innerHTML =wins;
       
   }
+  if (guessesLeft < 1){
+      losses++;
+      document.getElementById('losses').innerHTML = losses;
+
+  }
+
     
     
     console.log(underscoreArray)
